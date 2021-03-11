@@ -1,5 +1,6 @@
 # Set up ------------------------------------------------------------------
 library(shiny)
+library(shinyWidgets)
 library(dplyr)
 library(ggplot2)
 library(plotly)
