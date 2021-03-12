@@ -4,9 +4,9 @@ library(markdown)
 library(dplyr)
 library(ggplot2)
 # Loading Data  -----------------------------------------------------------
-vax_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/country_vaccinations.csv")
-#us_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us-counties.csv")
-#state_daily <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us_states_covid19_daily.csv")
+# vax_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/country_vaccinations.csv")
+# us_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us-counties.csv")
+# state_daily <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us_states_covid19_daily.csv")
 
 
 #US_data sliders 
@@ -25,7 +25,6 @@ counties_input <- selectInput (
   inputId = "counties",
   choices = counties,
   label = "Choose a Washington County"
-  
 )
 
 # State Daily Data Sliders  ----------------------------------------------------
@@ -111,7 +110,6 @@ ui <- navbarPage(
     titlePanel("Covid Cases Plot"),
     us_y_input,
     counties_input,
-    size_input,
     plotlyOutput(outputId = "line"),
     p("This graph was created to view the number of covid cases and deaths from 
     January 2020 to March 2021 in all of the counties in Washington")
