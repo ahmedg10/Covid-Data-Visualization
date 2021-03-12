@@ -1,4 +1,4 @@
-# Set up ------------------------------------------------------------------
+  # Set up ------------------------------------------------------------------
 library(shiny)
 library(markdown)
 library(dplyr)
@@ -8,6 +8,25 @@ vax_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/coun
 #us_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us-counties.csv")
 #state_daily <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us_states_covid19_daily.csv")
 
+
+#US_data sliders 
+counties <- us_data %>% 
+  filter(state == "Washington")
+  
+counties <- unique(counties$county)
+
+us_y_input <- selectInput ( 
+  inputId = "us_y",
+  choices = c("cases","deaths"),
+  label = "Choose Y Variable"
+)
+
+counties_input <- selectInput (
+  inputId = "counties",
+  choices = counties,
+  label = "Choose a Washington County"
+  
+)
 
 # State Daily Data Sliders  ----------------------------------------------------
 states <- unique(state_daily$state)
@@ -79,7 +98,7 @@ ui <- navbarPage(
         the world. There are some Null variables with some of the smaller countries 
         as they recieved vaccine resources later than first world coutnries such
         as the US.")
-    ),
+    )
   ),
   tabPanel(
     titlePanel("Hospitlizations Plot"),
@@ -87,6 +106,15 @@ ui <- navbarPage(
     plotlyOutput(outputId = "bar"),
     p("This Graph was created in order to view the hospitlizations 
       in US Hotspot states to this current day. ")
+  ),
+  tabPanel(
+    titlePanel("Covid Cases Plot"),
+    us_y_input,
+    counties_input,
+    size_input,
+    plotlyOutput(outputId = "line"),
+    p("This graph was created to view the number of covid cases and deaths from 
+    January 2020 to March 2021 in all of the counties in Washington")
   )
 )
 

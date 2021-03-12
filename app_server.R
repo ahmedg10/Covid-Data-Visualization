@@ -5,9 +5,9 @@ library(shiny)
 library(dplyr)
 
 # Loading Data  -----------------------------------------------------------
-#vax_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/country_vaccinations.csv")
-#us_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us-counties.csv")
-#state_daily <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us_states_covid19_daily.csv")
+vax_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/country_vaccinations.csv")
+us_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us-counties.csv")
+state_daily <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us_states_covid19_daily.csv")
 
 server <- function(input, output) {
   output$scatter <- renderPlotly({
@@ -81,6 +81,22 @@ colnames(filtered_states) <- c(
       y = "Hot Spot States"
     )
   ggplotly(my_bar)  
+})
+
+output$line <- renderPlotly({
+  line_plot_data <- us_data %>%
+    filter (state == "Washington") %>%
+    filter (county == input$counties)
+
+  my_line <- ggplot(line_plot_data, aes(x = date, y = .data[[input$us_y]]),
+                    size = input$size)  +
+    geom_point()+
+    labs(
+      title = "New Cases per County in Washington State",
+      x = "Date",
+      y = input$us_y
+    )
+    ggplotly(my_line)
 })
 
 }
