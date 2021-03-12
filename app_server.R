@@ -41,11 +41,8 @@ colnames(filter_vax) <- c(
         mapping = aes(x = date, y = filter_vax[[input$y_vax]]),
         color = input$color, size = input$size
       ) +
-      scale_x_date ( limits = c("2020-12-21", "2021-03-06"), breaks = scales:: 
-                       pretty_breaks(n=5))+
-      scale_x_discrete(breaks = levels(filter_vax$date)[ floor(seq(1,
-                                                                   nlevels(filter_vax$date),
-                                                                   length.out = 10))])+
+      scale_x_discrete(breaks = c("2020-12-01", "2021-01-01", "2021-02-01", 
+                                  "2021-03-01")) +
       labs(
         title = "Amount of Vaccination By Country",
         x = "Date (December 2020 - March 2021)",
@@ -93,10 +90,9 @@ output$line <- renderPlotly({
 
   my_line <- ggplot(line_plot_data)  +
     geom_point(mapping = aes(x = date, y = .data[[input$us_y]])) +
-    scale_x_date( limits = c( "2020-12-21", "2021-03-06"), breaks= scales::pretty_breaks(n=5))+
-    scale_x_discrete(breaks = levels(filter_vax$date)[floor(seq(1,
-                                                                nlevels(filter_vax$date),
-                                                                length.out = 10))]) +
+    scale_x_discrete(breaks = c("2020-02-01", "2020-04-01", "2020-06-01",
+                                "2020-08-01", "2020-10-01", "2020-12-01", 
+                                "2021-02-01")) +
     labs(
       title = "New Cases per County in Washington State",
       x = "Date",
