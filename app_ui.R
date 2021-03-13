@@ -4,9 +4,9 @@ library(markdown)
 library(dplyr)
 library(ggplot2)
 # Loading Data  -----------------------------------------------------------
-# vax_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/country_vaccinations.csv")
-# us_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us-counties.csv")
-# state_daily <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us_states_covid19_daily.csv")
+ #vax_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/country_vaccinations.csv")
+ #us_data <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us-counties.csv")
+ #state_daily <- read.csv("https://raw.githubusercontent.com/ahmedg10/Final/main/us_states_covid19_daily.csv")
 
 
 #US_data sliders 
@@ -111,8 +111,52 @@ ui <- navbarPage(
     us_y_input,
     counties_input,
     plotlyOutput(outputId = "line"),
-    p("This graph was created to view the number of covid cases and deaths from 
-    January 2020 to March 2021 in all of the counties in Washington")
+    p("This graph was created to view the total number of covid cases and deaths 
+    from January 2020 to March 2021 in all of the different counties in 
+    Washington. ")
+  ),
+  tabPanel(
+    titlePanel("Conclusion"),
+    h1("Summary Takeaways"),
+    mainPanel(p("As we continue to move through the COVID-19 pandemic and into
+                the vaccination stage, it is important to stay in the know on 
+                how well others areas are dealing with COVID-19 and the rate at
+                which vaccines are being distributed throughout the world. As 
+                you can see through our interactive bar chart, one takeaway is 
+                that there is a significant disparity in the number of people 
+                currently and cumulatively hospitalized between the eastern 
+                and western states displayed. Due to different regions in the US
+                choosing to loosen restrictions at their own rates and the 
+                disproportionate populations between states, the result
+                is a greater influx of cases in those areas that choose to
+                expedite the reopening process. Since cases are still spiking in 
+                some areas due to reopening, we also chose to analyze the 
+                vaccination rates in each individual country to see if there is
+                also a disparity within counrties receiving and distributing the
+                vaccine to their citizens. A takeaway from our project that is 
+                made evident through our chart of daily and total vaccinations 
+                by country is that some countries are outperforming others
+                in distributing the COVID-19 vaccine. Most countries are 
+                currently in the thousands in terms of how many of their 
+                citizens have been vaccinated while countries like the US and UK
+                are in the billions. While this may be partly due to the 
+                population disproportion between countries, the difference from
+                thousands to billions indicates a confounding variable. The 
+                The underlying reason for the disparity of vaccinations between  
+                countries is wealth. All the countries with more wealth were 
+                able to invest money early into vaccine development, putting 
+                them at the front of the line to receive it. The third takeaway
+                from our project comes from our chart of COVID-19 cases and 
+                deaths over time in all Washington counties. Every county 
+                seems to have similar increasing cases and death trends from
+                2020-08-01 to the current. While each county has different 
+                population proportions, the increasing trend seems to be the 
+                same throughout all counties in Washington regardless of 
+                population. With all the takeaways our project has brought to 
+                light, it is evident that some areas are pushing for reopening 
+                faster than others and thus contracting more cases, while the 
+                areas with more wealth are getting vaccinated at a staggering 
+                rate.")
+    )
   )
 )
-
